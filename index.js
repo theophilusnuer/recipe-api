@@ -10,7 +10,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-app.use(routes);
+app.use("/recipes", routes);
 
 
 await mongoose.connect(process.env.MONGO_URI);

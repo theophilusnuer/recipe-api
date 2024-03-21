@@ -1,31 +1,23 @@
 import { Router } from "express";
-import { Recipes } from "../modules/recipes.js";
+import { RecipeModel } from "../models/recipe.js";
+import {
+  addRecipe,
+  deleteRecipe,
+  getRecipe,
+  getRecipes,
+  updateRecipe,
+} from "../controllers/recipes.controller.js";
 
 const router = Router();
 
-router.post("/recipes", async (req,res)=>{
-const results = await Recipes.create();
-res.json(results);
-});
+router.post("/", addRecipe);
 
-router.get("/recipes", async (req, res) => {
-  const results = await Recipes.find();
-  res.json(results);
-  });
+router.get("/", getRecipes);
 
-  router.get("/recipes/:id", async (req, res) => {
-    const results = await Recipes.findOne();
-    res.json(results);
-  });
-  
-  router.patch("/recipes/:id", async (req, res) => {
-    const results = await Recipes.updateOne();
-    res.json(results);
-  });
-  
-  router.delete("/recipes/:id", async (req, res) => {
-    const results = await Recipes.deleteOne();
-    res.json(results);
-  });
+router.get("/:id", getRecipe);
+
+router.patch("/:id", updateRecipe);
+
+router.delete("/:id", deleteRecipe);
 
 export default router;
