@@ -16,5 +16,5 @@ app.use("/recipes", routes);
 await mongoose.connect(process.env.MONGO_URI);
 
 app.listen(6000, ()=>{
-console.log('Express app is running ')
+console.log('Express app is running ');
 });
