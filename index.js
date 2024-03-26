@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
@@ -8,13 +9,17 @@ dotenv.config({ path: [".env.local"] });
 
 const app = express();
 
+//middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(cors());
+
+//use routes
 app.use("/recipes", routes);
 
 
 await mongoose.connect(process.env.MONGO_URI);
 
-app.listen(6000, ()=>{
+app.listen(4000, ()=>{
 console.log('Express app is running ');
 });
