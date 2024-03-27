@@ -18,9 +18,11 @@ app.use(express.static('uploads'));
 //use routes
 app.use("/recipes", routes);
 
-
+//make mongoose databse connection
 await mongoose.connect(process.env.MONGO_URI);
 
-app.listen(4000, ()=>{
-console.log('Express app is running ');
+//define listening port
+const port = process.env.PORT || 4000
+app.listen(port, ()=>{
+console.log(`Express app is running on port ${port}!`);
 });
